@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>GYM AUTOMATIC</title>
+<style type="text/css">
+.logout {
+	background-color: #0F0;
+	padding: 15px;
+	border-radius: 15px;
+	}
+.Negrita {
+	font-weight: normal;
+  	background: orange;
+  	color: black;
+  	text-shadow: 1px 1px #fff;
+  	font-size: 33px	
+}
+table {
+	background: #F5DA81 ;
+	font-size: 30px;
+	font-family: serif;
+	color: black ;
+}
+.text{
+	font-family: Verdana;
+
+}
+</style>
+<link rel="stylesheet" type="text/css" href="Style.css">
+</head>
+<font color="white" size="5">
+<body>
+		<div class= "imagenes1">
+<p class="Negrita"><strong><em>BULLDOG GYM</em></strong></p>
+<p>&nbsp;</p>
+<p class="text"><strong></strong></p>
+<p>&nbsp;</p>
+	<div>
+		<h1 id="musculo"></h1>
+		<table id="paquetes" border="1">
+			<tr>
+					
+				<td>Ejericio</td>
+				<td>Maximo</td>
+				<td>Minimo</td>
+				<td>Nombre</td>
+				<td>Repeticiones</td>
+				<td>Series</td>
+
+			</tr> 
+		</table>
+	</div>
+</p>
+</div>
+<div>
+	<center><button>Dale aqui</button></center>
+	<script type="text/javascript">
+	var button = document.querySelector('button');
+
+	button.onclick = function() {
+  	var name = prompt('¿Cual es tu apodo de mamado?');
+ 	 alert('Que onda ' + name + ', A darle con todo!');
+	}
+	</script>
+</div>
+
+<link rel="stylesheet" type="text/css" href="Style.css">
+<div class="imagenes3">
+<p class="Negrita"><STRONG>ESPEREMOS TU VISITA</STRONG>
+	<p>&nbsp;</p>
+	<p><strong> CONTACTANOS: ARIEL REYES EN FACEBOOK
+	</strong>
+	</p>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+		<p><button id="logout">Cerrar sesion</button></p>
+</div>
+
+
+<script type="module">
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-app.js";
+		import { doc, getDoc, getFirestore } from "https://cdnjs.cloudflare.com/ajax/libs/firebase/9.6.9/firebase-firestore.min.js";
+		
+		import { getAuth, onAuthStateChanged, signOut, signInWithEmailAndPassword} from 'https://cdnjs.cloudflare.com/ajax/libs/firebase/9.6.9/firebase-auth.min.js';
+
+		const firebaseConfig = {
+		    apiKey: "AIzaSyAwNe4K3nEqP_7M-jgrZGyayoCttJFx1W0",
+		    authDomain: "proyecto-final-6b61c.firebaseapp.com",
+		    projectId: "proyecto-final-6b61c",
+		    storageBucket: "proyecto-final-6b61c.appspot.com",
+		    messagingSenderId: "6378511522",
+		    appId: "1:6378511522:web:4dcfc781c38ebb0762cbfb",
+		    measurementId: "G-4JX7V5T964"
+		  };
+
+		// Initialize Firebase
+		const app = initializeApp(firebaseConfig);
+
+		// inicializar Firebase
+		const  firebase = initializeApp(firebaseConfig);
+		const auth = getAuth();
+
+		const db = getFirestore(app);
+
+		onAuthStateChanged(auth, (user) => {
+		  if (user) {
+		    // User is signed in, see docs for a list of available properties
+		    // https://firebase.google.com/docs/reference/js/firebase.User
+		    const uid = user.uid;
+		    console.log("perro");
+		    // ...
+		  } else {
+		    // User is signed out
+		    // ...
+		    console.log("noperro");
+		    window.location='IniciarSesion.html';
+		  }
+		});
+		document.getElementById("logout").addEventListener("click", myFunction);
+		function myFunction() {
+		  const auth = getAuth();
+			signOut(auth).then(() => {
+			  // Sign-out successful.
+			  window.location='IniciarSesion.html';
+			}).catch((error) => {
+			  // An error happened.
+			});
+		}
+
+		const docRef = doc(db, "PAQUETES", "BvpG8tCL9PSavlxaoAnr","2","0FbaHG2N64zg9BD35nRr");
+		const docSnap = await getDoc(docRef);
+
+		if (docSnap.exists()) {
+		  console.log("Document data:", docSnap.data().ejercicio);
+		  document. getElementById("musculo").innerHTML += "<h2>"+docSnap.data().musculos+"</h2>";
+		  for (var i = 1; i <= 7; i++) {
+		  	document. getElementById("paquetes").innerHTML +=  "<tr><td>"+i+"</td><td>"+docSnap.data().ejercicio[i].maximo+"</td><td>"+docSnap.data().ejercicio[i].minimo+"</td><td>"+docSnap.data().ejercicio[i].nombre+"</td><td>"+docSnap.data().ejercicio[i].repeticiones+"</td><td>"+docSnap.data().ejercicio[i].series+"</td></tr>" ;
+		  }
+		  
+
+
+		} else {
+		  // doc.data() will be undefined in this case
+		  console.log("No such document!");
+		 }
+	</script>
+</body>
+</html>
+</font>

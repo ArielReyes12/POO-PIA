@@ -1,0 +1,61 @@
+* 
+{
+	margin:0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.imagenes1
+{
+	height: 100vh;
+	width: 100vw;
+	background-image: url(./img/Gym2.jpg);
+	text-align: center;
+	color: #FFF;
+	font-weight: bold;
+	background-repeat: no-repeat;
+	background-size: cover; 
+	background-attachment: fixed;
+}
+.imagenes2
+{
+	height: 100vh;
+	width: 100vw;
+	background-image: url(./img/Gym1.jpg);
+	text-align: center;
+	color: #FFF;
+	font-weight: bold;
+	background-repeat: no-repeat;
+	background-size: cover; 
+	background-attachment: fixed;
+}
+.imagenes3
+{
+	height: 100vh;
+	width: 100vw;
+	background-image: url(./img/Gym3.png);
+	text-align: center;
+	color: #000;
+	font-weight: bold;
+	background-repeat: no-repeat;
+	background-size: cover; 
+	background-attachment: fixed;
+}
+.imagenes4
+{
+	height: 100vh;
+	width: 100vw;
+	background-image: url(./img/Gym4.jpg);
+	text-align: center;
+	color: black;
+	font-weight: bold;
+	background-repeat: no-repeat;
+	background-size: cover; 
+	background-attachment: fixed;
+}
+.green-black-shadow::selection 
+{
+  background: green;
+  color: black;
+  text-shadow: 1px 1px #fff;
+  font-size: 33px
+}
